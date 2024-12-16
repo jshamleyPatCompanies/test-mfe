@@ -1,0 +1,26 @@
+<p>RetrieveUser works!</p>
+<div class="content">
+  <ng-container *ngIf="isLoading$ | async; else resultTemplate">
+    <div class="row">
+      <!-- //TODO: SHOW LOADING INDICATORS HERE (SPINNER, ETC) -->
+    </div>
+  </ng-container>
+  <ng-template #resultTemplate>
+    <ng-container *ngIf="isSuccess$ | async">
+      <!-- //TODO: SHOW SUCCESS INDICATORS/MESSAGE -->
+      <ng-container *ngIf="data$ | async as data; else noDataTemplate">
+        <div class="row">
+          <div class="col-md-6">
+            <!-- //TODO: DO SOMETHING WITH DATA HERE -->
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noDataTemplate>
+        <!-- //TODO: SHOW NO DATA MESSAGE HERE -->
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="isError$ | async">
+      <!-- //TODO: SHOW ERROR MESSAGE(S) HERE -->
+    </ng-container>
+  </ng-template>
+</div>
