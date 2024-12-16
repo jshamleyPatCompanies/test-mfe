@@ -33,6 +33,8 @@
     "@nx/jest": "18.3.5",
     "@nx/js": "18.3.5",
     "@nx/workspace": "18.3.5",
+    "@patterson-angular/cli": "17.0.12",
+    "@patterson-angular/devkit": "17.0.12",
     "@schematics/angular": "~17.3.0",
     "@swc-node/register": "~1.8.0",
     "@swc/core": "~1.3.85",
