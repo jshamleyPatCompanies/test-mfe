@@ -11,7 +11,6 @@ import {
 import { LogLevel, LoggingService } from '@patterson-angular/logger';
 import { PaginatedListRequest, ServiceContext } from '@patterson-angular/types';
 import { IUsersRepositoryService } from './i-users-repository.service';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +20,6 @@ export class UsersRepositoryService
 {
   requestHeaders!: HttpHeaders;
   baseUrl!: string;
-
   /**
    *
    * @param configService A configuration service that provides access to the application configuration.
@@ -37,11 +35,22 @@ export class UsersRepositoryService
   ) {
     super('UsersRepositoryService', loggingService, serviceContext);
   }
-
-  // performUsers(): Observable<any> {
-  // const requestUrl = `${this.configService.settings.appConfig.bffBaseUrl}/doSomething`;
-  // this.loggingService.log(this.serviceName, LogLevel.Information, `Preparing to call API to... `);
-  // const options = this.httpService.createOptions(HttpRequestMethod.get, requestUrl, this.httpService.createHeader(), null, undefined, false );
-  // return this.httpService.execute(options);
-  // }
+  /**
+   * TODO: Add comment here describing what this method does
+   * @param userId TODO: Adjust parameters as needed and add comments accordingly for each
+   */
+  createUser<T>(userId: string): Observable<T> {
+    const requestUrl = `${this.baseUrl}/api/v1/Users/${userId}`;
+    const message = `${this.serviceName} preparing to call: ${requestUrl}`;
+    this.loggingService.log(this.serviceName, LogLevel.Information, message);
+    const requestOptions = this.httpService.createOptions(
+      HttpRequestMethod.get,
+      requestUrl,
+      this.requestHeaders,
+      '',
+      undefined,
+      false
+    );
+    return this.httpService.execute<T>(requestOptions);
+  }
 }

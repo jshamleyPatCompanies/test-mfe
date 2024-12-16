@@ -9,7 +9,6 @@ import {
   ServiceContext,
 } from '@patterson-angular/types';
 import { UsersBusinessProviderService } from './business/users-business-provider.service';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -22,8 +21,11 @@ export class UsersService extends ServiceBase {
     super('UsersService', loggingService, serviceContext);
     this.businessProvider.serviceContext = this.serviceContext;
   }
-
-  // someMethod<T>(someInput: string): Observable<ApiResponse<T>> {
-  //   return this.businessProvider.businessProviderMethod<T>(someInput);
-  // }
+  /**
+   * TODO: Add comment here describing what this method does
+   * @param userId TODO: Adjust parameters as needed and add comments accordingly for each
+   */
+  createUser<T>(userId: string): Observable<ApiResponse<T>> {
+    return this.businessProvider.createUser<T>(userId);
+  }
 }
