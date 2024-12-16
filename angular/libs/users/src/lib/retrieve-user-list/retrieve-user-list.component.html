@@ -1,0 +1,43 @@
+<p>RetrieveUserList works!</p>
+<div class="content">
+  <ng-container *ngIf="isLoading$ | async; else resultTemplate">
+    <div class="row">
+      <!-- //TODO: SHOW LOADING INDICATORS HERE (SPINNER, ETC) -->
+    </div>
+  </ng-container>
+  <ng-template #resultTemplate>
+    <ng-container *ngIf="isSuccess$ | async">
+      <!-- //TODO: SHOW SUCCESS INDICATORS/MESSAGE -->
+      <ng-container *ngIf="data$ | async as data; else noDataTemplate">
+        <div class="row">
+          <div class="col-md-6">
+            <kendo-grid
+              [data]="data$ | async"
+              [pageSize]="paginatedListRequest.pageSize"
+              [skip]="skip"
+              [pageable]="true"
+              [sortable]="false"
+              [filterable]="false"
+              (pageChange)="pageChange($event)"
+            >
+              <kendo-grid-column
+                field="placeholder1"
+                title="Placeholder1"
+              ></kendo-grid-column>
+              <kendo-grid-column
+                field="placeholder2"
+                title="Placeholder2"
+              ></kendo-grid-column>
+            </kendo-grid>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noDataTemplate>
+        <!-- //TODO: SHOW NO DATA MESSAGE HERE -->
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="isError$ | async">
+      <!-- //TODO: SHOW ERROR MESSAGE(S) HERE -->
+    </ng-container>
+  </ng-template>
+</div>
