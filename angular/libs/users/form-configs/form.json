@@ -1,0 +1,124 @@
+{
+  "README_Overview": "<--Use the below as a template for creating the controls for your form. You can add as many controls as you like. For more details, see the ReadMe document.-->",
+  "README_ControlTypes": "<--Available control types: 'input' | 'password' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'date' | 'number' | 'email'-->",
+  "formName": "<--USE [NAME] IN THE GENERATOR OPTIONS-->",
+  "controls": [
+    {
+      "name": "fullName",
+      "label": "Full Name",
+      "controlType": "input",
+      "validators": [
+        { "validatorType": "required", "message": "Full Name is required" },
+        {
+          "validatorType": "maxLength",
+          "message": "Full Name must be no more than 50 characters long",
+          "value": 50
+        },
+        {
+          "validatorType": "pattern",
+          "message": "Full Name must only contain letters and spaces",
+          "value": "/^[a-zA-Z ]+$/"
+        },
+        {
+          "validatorType": "minLength",
+          "message": "The Full Name must be at least 2 characters long",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "age",
+      "label": "Age",
+      "controlType": "number",
+      "validators": [
+        { "validatorType": "required", "message": "Age is required" },
+        {
+          "validatorType": "pattern",
+          "message": "Age must be whole number",
+          "value": "/^[0-9]+$/"
+        },
+        {
+          "validatorType": "min",
+          "message": "Age cannot be negative",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "name": "email",
+      "label": "Email Address",
+      "controlType": "email",
+      "validators": [
+        { "validatorType": "required", "message": "Email is required" },
+        {
+          "validatorType": "email",
+          "message": "Email must be a valid email address"
+        }
+      ]
+    },
+    {
+      "name": "password",
+      "label": "Password",
+      "controlType": "password",
+      "validators": [
+        { "validatorType": "required", "message": "Password is required" },
+        {
+          "validatorType": "minLength",
+          "message": "The password must be at least 8 characters long",
+          "value": 8
+        }
+      ]
+    },
+    {
+      "name": "isEmployee",
+      "label": "Is Employee",
+      "controlType": "checkbox",
+      "validators": [
+        {
+          "validatorType": "required",
+          "message": "Must designate if user is employee or not"
+        }
+      ]
+    },
+    {
+      "name": "startDate",
+      "label": "Start Date",
+      "controlType": "date-picker",
+      "validators": [
+        { "validatorType": "required", "message": "Start Date is required" }
+      ]
+    },
+    {
+      "name": "hasCar",
+      "label": "Does employee have car?",
+      "controlType": "radio",
+      "validators": [
+        {
+          "validatorType": "required",
+          "message": "Designation of whether employee has car is required"
+        }
+      ]
+    },
+    {
+      "name": "color",
+      "label": "Favorite Color",
+      "controlType": "select",
+      "dataSetName": "colors",
+      "validators": [
+        { "validatorType": "required", "message": "Favorite Color is required" }
+      ]
+    },
+    {
+      "name": "notes",
+      "label": "Notes",
+      "controlType": "text-area",
+      "validators": [
+        {
+          "validatorType": "maxLength",
+          "message": "Notes must be no more than 500 characters long",
+          "value": 500
+        }
+      ]
+    }
+  ]
+}
