@@ -1,0 +1,370 @@
+<h2>UpdateUser works!</h2>
+<div class="content">
+  <ng-container *ngIf="isLoading$ | async; else resultTemplate">
+    <div class="row">
+      <kendo-loader></kendo-loader>
+    </div>
+  </ng-container>
+  <ng-template #resultTemplate>
+    <ng-container *ngIf="isSuccess$ | async">
+      <!-- //TODO: SHOW SUCCESS INDICATORS/MESSAGE -->
+      <ng-container *ngIf="data$ | async as data; else noDataTemplate">
+        <div class="example-wrapper">
+          <form
+            id="updateUserForm"
+            [formGroup]="updateUserForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <!-- START: text input for fullName -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 example-col">
+                <kendo-formfield showHints="initial" showErrors="initial">
+                  <kendo-floatinglabel text="Full Name">
+                    <kendo-textbox
+                      formControlName="fullName"
+                      value="{{ data.fullName }}"
+                      #fullName
+                      data-qa="updateUser-form-input-fullName"
+                    ></kendo-textbox>
+                  </kendo-floatinglabel>
+                  <!-- START: validator messages -->
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('fullName')?.touched &&
+                      updateUserForm.get('fullName')?.hasError('required')
+                    "
+                    >Full Name is required</kendo-formerror
+                  >
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('fullName')?.touched &&
+                      updateUserForm.get('fullName')?.hasError('maxLength')
+                    "
+                    >Full Name must be no more than 50 characters
+                    long</kendo-formerror
+                  >
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('fullName')?.touched &&
+                      updateUserForm.get('fullName')?.hasError('pattern')
+                    "
+                    >Full Name must only contain letters and
+                    spaces</kendo-formerror
+                  >
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('fullName')?.touched &&
+                      updateUserForm.get('fullName')?.hasError('minLength')
+                    "
+                    >The Full Name must be at least 2 characters
+                    long</kendo-formerror
+                  >
+                  <!-- END: validator messages -->
+                </kendo-formfield>
+              </div>
+            </div>
+            <!-- END: text input for fullName -->
+
+            <!-- START: number input for age -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 example-col">
+                <kendo-formfield showHints="initial" showErrors="initial">
+                  <kendo-floatinglabel text="Age">
+                    <kendo-numerictextbox
+                      formControlName="age"
+                      value="{{ data.age }}"
+                      #age
+                      data-qa="updateUser-form-input-age"
+                    ></kendo-numerictextbox>
+                  </kendo-floatinglabel>
+                  <!-- START: validator messages -->
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('age')?.touched &&
+                      updateUserForm.get('age')?.hasError('required')
+                    "
+                    >Age is required</kendo-formerror
+                  >
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('age')?.touched &&
+                      updateUserForm.get('age')?.hasError('pattern')
+                    "
+                    >Age must be whole number</kendo-formerror
+                  >
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('age')?.touched &&
+                      updateUserForm.get('age')?.hasError('min')
+                    "
+                    >Age cannot be negative</kendo-formerror
+                  >
+                  <!-- END: validator messages -->
+                </kendo-formfield>
+              </div>
+            </div>
+            <!-- END: number input for age -->
+
+            <!-- START: text input for email -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 example-col">
+                <kendo-formfield showHints="initial" showErrors="initial">
+                  <kendo-floatinglabel text="Email Address">
+                    <kendo-textbox
+                      formControlName="email"
+                      value="{{ data.email }}"
+                      #email
+                      data-qa="updateUser-form-email-email"
+                    ></kendo-textbox>
+                  </kendo-floatinglabel>
+                  <!-- START: validator messages -->
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('email')?.touched &&
+                      updateUserForm.get('email')?.hasError('required')
+                    "
+                    >Email is required</kendo-formerror
+                  >
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('email')?.touched &&
+                      updateUserForm.get('email')?.hasError('email')
+                    "
+                    >Email must be a valid email address</kendo-formerror
+                  >
+                  <!-- END: validator messages -->
+                </kendo-formfield>
+              </div>
+            </div>
+            <!-- END: text input for email -->
+
+            <!-- START: text input for password -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 example-col">
+                <kendo-formfield showHints="initial" showErrors="initial">
+                  <kendo-floatinglabel text="Password">
+                    <kendo-textbox
+                      formControlName="password"
+                      value="{{ data.password }}"
+                      #password
+                      data-qa="updateUser-form-input-password"
+                    ></kendo-textbox>
+                  </kendo-floatinglabel>
+                  <!-- START: validator messages -->
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('password')?.touched &&
+                      updateUserForm.get('password')?.hasError('required')
+                    "
+                    >Password is required</kendo-formerror
+                  >
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('password')?.touched &&
+                      updateUserForm.get('password')?.hasError('minLength')
+                    "
+                    >The password must be at least 8 characters
+                    long</kendo-formerror
+                  >
+                  <!-- END: validator messages -->
+                </kendo-formfield>
+              </div>
+            </div>
+            <!-- END: text input for password -->
+
+            <!-- START: input for isEmployee -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 example-col">
+                <kendo-formfield showHints="initial" showErrors="initial">
+                  <kendo-floatinglabel text="Is Employee">
+                    <input
+                      kendoCheckBox
+                      type="checkbox"
+                      formControlName="isEmployee"
+                      value="{{ data.isEmployee }}"
+                      data-qa="updateUser-form-input-isEmployee"
+                    />
+                  </kendo-floatinglabel>
+                  <!-- START: validator messages -->
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('isEmployee')?.touched &&
+                      updateUserForm.get('isEmployee')?.hasError('required')
+                    "
+                    >Must designate if user is employee or not</kendo-formerror
+                  >
+                  <!-- END: validator messages -->
+                </kendo-formfield>
+              </div>
+            </div>
+            <!-- END: input for isEmployee -->
+
+            <!-- START: date picker for startDate -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 example-col">
+                <kendo-formfield showHints="initial" showErrors="initial">
+                  <kendo-floatinglabel text="Start Date">
+                    <kendo-datepicker
+                      formControlName="startDate"
+                      value="{{ data.startDate }}"
+                      #startDate
+                      data-qa="updateUser-form-date-startDate"
+                    ></kendo-datepicker>
+                  </kendo-floatinglabel>
+                  <!-- START: validator messages -->
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('startDate')?.touched &&
+                      updateUserForm.get('startDate')?.hasError('required')
+                    "
+                    >Start Date is required</kendo-formerror
+                  >
+                  <!-- END: validator messages -->
+                </kendo-formfield>
+              </div>
+            </div>
+            <!-- END: date picker for startDate -->
+
+            <!-- START: radio group for hasCar -->
+            <div class="row">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  width: 40px;
+                "
+              >
+                <kendo-formfield
+                  showHints="initial"
+                  showErrors="initial"
+                  data-qa="updateUser-form-radio-hasCar"
+                >
+                  <kendo-floatinglabel text="Does employee have car?">
+                    <input
+                      kendoRadioButton
+                      type="radio"
+                      name="hasCar"
+                      value="yes"
+                      formControlName="hasCar"
+                    />
+                    <input
+                      kendoRadioButton
+                      type="radio"
+                      name="hasCar"
+                      value="no"
+                      formControlName="hasCar"
+                    />
+                  </kendo-floatinglabel>
+                  <!-- START: validator messages -->
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('hasCar')?.touched &&
+                      updateUserForm.get('hasCar')?.hasError('required')
+                    "
+                    >Designation of whether employee has car is
+                    required</kendo-formerror
+                  >
+                  <!-- END: validator messages -->
+                </kendo-formfield>
+              </div>
+            </div>
+            <!-- END: radio group for hasCar -->
+
+            <!-- START: dropdown list for color -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 example-col">
+                <kendo-formfield showHints="initial" showErrors="initial">
+                  <kendo-floatinglabel text="Favorite Color">
+                    <kendo-dropdownlist
+                      [data]="colors$"
+                      value="{{ data.color }}"
+                      data-qa="updateUser-form-select-color"
+                    >
+                      <ng-template kendoDropDownListItemTemplate let-dataItem>
+                        <span class="template">{{ dataItem.label }}</span>
+                        {{ dataItem.text }}
+                      </ng-template>
+                      ></kendo-dropdownlist
+                    >
+                  </kendo-floatinglabel>
+                  <!-- START: validator messages -->
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('color')?.touched &&
+                      updateUserForm.get('color')?.hasError('required')
+                    "
+                    >Favorite Color is required</kendo-formerror
+                  >
+                  <!-- END: validator messages -->
+                </kendo-formfield>
+              </div>
+            </div>
+            <!-- END: dropdown list for color -->
+
+            <!-- START: text area for notes -->
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 example-col">
+                <kendo-formfield showHints="initial" showErrors="initial">
+                  <kendo-floatinglabel text="Notes">
+                    <kendo-textarea
+                      formControlName="notes"
+                      value="{{ data.notes }}"
+                      #notes
+                      data-qa="updateUser-form-textarea-notes"
+                    ></kendo-textarea>
+                  </kendo-floatinglabel>
+                  <!-- START: validator messages -->
+                  <kendo-formerror
+                    *ngIf="
+                      updateUserForm.invalid &&
+                      updateUserForm.get('notes')?.touched &&
+                      updateUserForm.get('notes')?.hasError('maxLength')
+                    "
+                    >Notes must be no more than 500 characters
+                    long</kendo-formerror
+                  >
+                  <!-- END: validator messages -->
+                </kendo-formfield>
+              </div>
+            </div>
+            <!-- END: text area for notes -->
+
+            <button
+              kendoButton="raised"
+              type="submit"
+              data-qa="updateUser-form-submit-button"
+              [disabled]="updateUserForm.invalid"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </ng-container>
+
+      <button kendoButton (click)="goBack()" data-qa="updateUser-form-cancel">
+        Return to List
+      </button>
+      <ng-template #noDataTemplate>
+        <!-- //TODO: SHOW NO DATA MESSAGE HERE -->
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="isError$ | async">
+      <!-- //TODO: SHOW ERROR MESSAGE(S) HERE -->
+    </ng-container>
+  </ng-template>
+</div>
