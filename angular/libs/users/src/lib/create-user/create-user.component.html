@@ -1,0 +1,331 @@
+<h2>CreateUser Form works!</h2>
+
+<div class="example-wrapper">
+  <form
+    id="createUserForm"
+    [formGroup]="createUserForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <!-- START: text input for fullName -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 example-col">
+        <kendo-formfield showHints="initial" showErrors="initial">
+          <kendo-floatinglabel text="Full Name">
+            <kendo-textbox
+              formControlName="fullName"
+              #fullName
+              data-qa="createUser-form-input-fullName"
+            ></kendo-textbox>
+          </kendo-floatinglabel>
+          <!-- START: validator messages -->
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('fullName')?.touched &&
+              createUserForm.get('fullName')?.hasError('required')
+            "
+            >Full Name is required</kendo-formerror
+          >
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('fullName')?.touched &&
+              createUserForm.get('fullName')?.hasError('maxLength')
+            "
+            >Full Name must be no more than 50 characters long</kendo-formerror
+          >
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('fullName')?.touched &&
+              createUserForm.get('fullName')?.hasError('pattern')
+            "
+            >Full Name must only contain letters and spaces</kendo-formerror
+          >
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('fullName')?.touched &&
+              createUserForm.get('fullName')?.hasError('minLength')
+            "
+            >The Full Name must be at least 2 characters long</kendo-formerror
+          >
+          <!-- END: validator messages -->
+        </kendo-formfield>
+      </div>
+    </div>
+    <!-- END: text input for fullName -->
+
+    <!-- START: number input for age -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 example-col">
+        <kendo-formfield showHints="initial" showErrors="initial">
+          <kendo-floatinglabel text="Age">
+            <kendo-numerictextbox
+              formControlName="age"
+              #age
+              data-qa="createUser-form-input-age"
+            ></kendo-numerictextbox>
+          </kendo-floatinglabel>
+          <!-- START: validator messages -->
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('age')?.touched &&
+              createUserForm.get('age')?.hasError('required')
+            "
+            >Age is required</kendo-formerror
+          >
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('age')?.touched &&
+              createUserForm.get('age')?.hasError('pattern')
+            "
+            >Age must be whole number</kendo-formerror
+          >
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('age')?.touched &&
+              createUserForm.get('age')?.hasError('min')
+            "
+            >Age cannot be negative</kendo-formerror
+          >
+          <!-- END: validator messages -->
+        </kendo-formfield>
+      </div>
+    </div>
+    <!-- END: number input for age -->
+
+    <!-- START: text input for email -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 example-col">
+        <kendo-formfield showHints="initial" showErrors="initial">
+          <kendo-floatinglabel text="Email Address">
+            <kendo-textbox
+              formControlName="email"
+              #email
+              data-qa="createUser-form-email-email"
+            ></kendo-textbox>
+          </kendo-floatinglabel>
+          <!-- START: validator messages -->
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('email')?.touched &&
+              createUserForm.get('email')?.hasError('required')
+            "
+            >Email is required</kendo-formerror
+          >
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('email')?.touched &&
+              createUserForm.get('email')?.hasError('email')
+            "
+            >Email must be a valid email address</kendo-formerror
+          >
+          <!-- END: validator messages -->
+        </kendo-formfield>
+      </div>
+    </div>
+    <!-- END: text input for email -->
+
+    <!-- START: text input for password -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 example-col">
+        <kendo-formfield showHints="initial" showErrors="initial">
+          <kendo-floatinglabel text="Password">
+            <kendo-textbox
+              formControlName="password"
+              #password
+              data-qa="createUser-form-input-password"
+            ></kendo-textbox>
+          </kendo-floatinglabel>
+          <!-- START: validator messages -->
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('password')?.touched &&
+              createUserForm.get('password')?.hasError('required')
+            "
+            >Password is required</kendo-formerror
+          >
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('password')?.touched &&
+              createUserForm.get('password')?.hasError('minLength')
+            "
+            >The password must be at least 8 characters long</kendo-formerror
+          >
+          <!-- END: validator messages -->
+        </kendo-formfield>
+      </div>
+    </div>
+    <!-- END: text input for password -->
+
+    <!-- START: input for isEmployee -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 example-col">
+        <kendo-formfield showHints="initial" showErrors="initial">
+          <kendo-floatinglabel text="Is Employee">
+            <input
+              kendoCheckBox
+              type="checkbox"
+              formControlName="isEmployee"
+              data-qa="createUser-form-input-isEmployee"
+            />
+          </kendo-floatinglabel>
+          <!-- START: validator messages -->
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('isEmployee')?.touched &&
+              createUserForm.get('isEmployee')?.hasError('required')
+            "
+            >Must designate if user is employee or not</kendo-formerror
+          >
+          <!-- END: validator messages -->
+        </kendo-formfield>
+      </div>
+    </div>
+    <!-- END: input for isEmployee -->
+
+    <!-- START: date picker for startDate -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 example-col">
+        <kendo-formfield showHints="initial" showErrors="initial">
+          <kendo-floatinglabel text="Start Date">
+            <kendo-datepicker
+              formControlName="startDate"
+              #startDate
+              data-qa="createUser-form-date-startDate"
+            ></kendo-datepicker>
+          </kendo-floatinglabel>
+          <!-- START: validator messages -->
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('startDate')?.touched &&
+              createUserForm.get('startDate')?.hasError('required')
+            "
+            >Start Date is required</kendo-formerror
+          >
+          <!-- END: validator messages -->
+        </kendo-formfield>
+      </div>
+    </div>
+    <!-- END: date picker for startDate -->
+
+    <!-- START: radio group for hasCar -->
+    <div class="row">
+      <div style="display: flex; justify-content: space-between; width: 40px">
+        <kendo-formfield
+          showHints="initial"
+          showErrors="initial"
+          data-qa="createUser-form-radio-hasCar"
+        >
+          <kendo-floatinglabel text="Does employee have car?">
+            <input
+              kendoRadioButton
+              type="radio"
+              name="hasCar"
+              value="yes"
+              formControlName="hasCar"
+            />
+            <input
+              kendoRadioButton
+              type="radio"
+              name="hasCar"
+              value="no"
+              formControlName="hasCar"
+            />
+          </kendo-floatinglabel>
+          <!-- START: validator messages -->
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('hasCar')?.touched &&
+              createUserForm.get('hasCar')?.hasError('required')
+            "
+            >Designation of whether employee has car is
+            required</kendo-formerror
+          >
+          <!-- END: validator messages -->
+        </kendo-formfield>
+      </div>
+    </div>
+    <!-- END: radio group for hasCar -->
+
+    <!-- START: dropdown list for color -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 example-col">
+        <kendo-formfield showHints="initial" showErrors="initial">
+          <kendo-floatinglabel text="Favorite Color">
+            <kendo-dropdownlist
+              [data]="colors$"
+              data-qa="createUser-form-select-color"
+            >
+              <ng-template kendoDropDownListItemTemplate let-dataItem>
+                <span class="template">{{ dataItem.label }}</span>
+                {{ dataItem.text }}
+              </ng-template>
+              ></kendo-dropdownlist
+            >
+          </kendo-floatinglabel>
+          <!-- START: validator messages -->
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('color')?.touched &&
+              createUserForm.get('color')?.hasError('required')
+            "
+            >Favorite Color is required</kendo-formerror
+          >
+          <!-- END: validator messages -->
+        </kendo-formfield>
+      </div>
+    </div>
+    <!-- END: dropdown list for color -->
+
+    <!-- START: text area for notes -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 example-col">
+        <kendo-formfield showHints="initial" showErrors="initial">
+          <kendo-floatinglabel text="Notes">
+            <kendo-textarea
+              formControlName="notes"
+              #notes
+              data-qa="createUser-form-textarea-notes"
+            ></kendo-textarea>
+          </kendo-floatinglabel>
+          <!-- START: validator messages -->
+          <kendo-formerror
+            *ngIf="
+              createUserForm.invalid &&
+              createUserForm.get('notes')?.touched &&
+              createUserForm.get('notes')?.hasError('maxLength')
+            "
+            >Notes must be no more than 500 characters long</kendo-formerror
+          >
+          <!-- END: validator messages -->
+        </kendo-formfield>
+      </div>
+    </div>
+    <!-- END: text area for notes -->
+
+    <button
+      kendoButton="raised"
+      type="submit"
+      data-qa="createUser-form-submit-button"
+      [disabled]="createUserForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+  <button kendoButton (click)="goBack()" data-qa="createUser-form-cancel">
+    Return to List
+  </button>
+</div>

@@ -111,7 +111,7 @@
     {
       "name": "notes",
       "label": "Notes",
-      "controlType": "text-area",
+      "controlType": "textarea",
       "validators": [
         {
           "validatorType": "maxLength",
